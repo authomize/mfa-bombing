@@ -17,6 +17,7 @@ class MFAChallenger:
             'orgUrl': config['okta_domain'],
             'token': config['okta_token'],
         }
+        print(f"Running MFA bombing tests on org {config['okta_domain']}")
         self.okta_client = OktaClient(okta_config)
 
     async def challenge_user(self, user: models.User):

@@ -26,13 +26,13 @@ The tool is written in Python and uses the Okta API to scan your organization fo
 2. Create the file `config.yaml` with your Okta config (use `config.yaml.example` for reference)
 3. Run using Poetry: 
 ```commandline
-poetry run python main.py
+poetry run python mfa_bombing_tester.py
 ```
 
 If you don't want to use Poetry, you can use python but need to install the Okta SDK first
 ```commandline
 pip install okta
-python main.py
+python mfa_bombing_tester.py
 ```
 
 
