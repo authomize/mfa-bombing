@@ -1,0 +1,2 @@
+okta_domain: http://test.okta.com   # Your okta domain
+okta_token: TOKEN                   # Your Okta token
