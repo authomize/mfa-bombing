@@ -31,7 +31,7 @@ poetry run python mfa_bombing_tester.py
 
 If you don't want to use Poetry, you can use python but need to install the Okta SDK first
 ```commandline
-pip install okta
+pip install PyYAML okta
 python mfa_bombing_tester.py
 ```
 
