@@ -3,11 +3,11 @@
 ## Introduction
 MFA (Multi-Factor Authentication) is a security measure used to protect user accounts by requiring more than one form of authentication. However, attackers can use a technique called MFA bombing to bypass MFA and gain access to user accounts.
 
-MFA bombing involves sending a large number of authentication requests to a user's account, overwhelming the user and tricking them into approving a fraudulent request. This technique can be used to bypass MFA that uses push notifications, SMS codes, or other forms of authentication.
+MFA bombing involves sending a large number of authentication requests to a user's account, overwhelming the user and tricking them into approving a fraudulent request. This technique can be used to bypass MFA that uses push notifications.
 
 To protect your users from MFA bombing, it's important to educate them on the topic and encourage them to be cautious when approving authentication requests.
 
-About the Tool
+## About the Tool
 The MFA Bombing Tester is a tool that scans your Okta organization for users with push authentication factor. When it finds one, it sends a push notification to the user to make them click on it. This helps you test your organization's resilience to MFA bombing attacks and identify potential vulnerabilities.
 
 The tool is written in Python and uses the Okta API to scan your organization for push-enabled users. It then sends a push notification to each user and waits for a response. If a user clicks on the push notification, the tool reports a successful authentication attempt.
