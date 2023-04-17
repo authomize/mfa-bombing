@@ -53,7 +53,7 @@ It contains the columns user_id, user_email, and result.
 
 If you don't want to use Poetry, you can use python but need to install the Okta SDK first
 ```commandline
-pip install fire PyYAML okta
+pip install -r requirements.txt
 python mfa_bombing_tester.py [path/to/report.csv]
 ```
 
