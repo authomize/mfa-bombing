@@ -1,61 +1,58 @@
-# MFA Bombing Tester
+# MFA Bombing Tools for Okta
+This GitHub repository contains a couple of tools that
+relate to MFA bombing with Okta, a cloud-based identity
+and access management platform. MFA bombing is a form
+of social engineering attack that involves sending a
+large number of MFA prompts to a user until the user
+gets fatigued by the prompts and approves one of them.
+The goal of this attack is to gain access to sensitive
+information or resources that require MFA for authentication.
 
-## Introduction
-MFA (Multi-Factor Authentication) is a security measure
-used to protect user accounts by requiring more than one
-form of authentication. In this way, if one factor is
-compromised (e.g. a password), the account can still be protected.
-However, attackers can use a technique called MFA bombing to
-bypass MFA and gain access to user accounts.
+## Disclaimer
+This tool is intended for educational purposes only.
+The author is not responsible for any misuse or damage caused by this tool.
+Use at your own risk.
 
-MFA bombing involves sending a large number of authentication
-requests to a user's account, overwhelming the user and
-tricking them into approving a fraudulent request. This
-technique can be used to bypass MFA that uses push notifications.
+## Tools
+This repository contains two tools:
 
-To protect your users from MFA bombing, it's important to educate
-them on the topic and encourage them to be cautious when
-approving authentication requests.
+* **MFA Bomber**: This tool bombards a user with MFA 
+push prompts until the user approves one of them.
+The tool works with Okta and requires a valid username and password.
+* **MFA Bombing Tester**: This tool scans an Okta organization for all users with push MFA prompts configured and triggers them to see who approves. The tool interacts with the Okta API using a token, so it doesn't require a Chrome driver to function.
 
-## About the Tool
-The MFA Bombing Tester is a tool that scans your Okta organization
-for users with push authentication factor. When it finds one,
-it sends a push notification to the user to make them click on it.
-This helps you test your organization's resilience to MFA bombing
-attacks and identify potential vulnerabilities.
-
-The tool is written in Python and uses the Okta API to scan
-your organization for push-enabled users. It then sends a push
-notification to each user and waits for a response.
-If a user clicks on the push notification, the tool reports
-a successful authentication attempt. In the end a report is saved
-to a CSV file containing the list of users along with the results
-of the test for each one.
-
-
-## How to Use the Tool
+## How to Use
 
 ### Requirements
 * Python 3.8 and up
-* Okta API token
+* Okta API token (for the MFA tester)
 * [Poetry](https://python-poetry.org/)
 
-### Running the tool
+### MFA Bomber
+To use the MFA Bomber tool, follow these steps:
 
-1. Clone the repo.
+1. Clone the repository to your local machine.
+2. Install poetry: `pip install poetry`
+3. Run the script with the following command: 
+`poetry run python mfa_bomber.py <okta_domain> <username> <password>`.
+
+Note that the tool can take some time to run,
+since it will wait for the user to approve the push,
+and if it gets rejected, it'll wait some time and then retry.
+
+### MFA Bombing Tester
+To use the MFA Bombing Tester tool, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Install poetry: `pip install poetry`
 2. Create the file `config.yaml` with your Okta config (use `config.yaml.example` for reference)
 3. Run using Poetry: 
 ```commandline
 poetry run python mfa_bombing_tester.py [path/to/report.csv]
 ```
-4. Read output report (default is to save to `report.csv`). 
-It contains the columns user_id, user_email, and result.
 
-If you don't want to use Poetry, you can use python but need to install the Okta SDK first
-```commandline
-pip install -r requirements.txt
-python mfa_bombing_tester.py [path/to/report.csv]
-```
+The tool will scan your Okta organization for all users with push MFA prompts configured and trigger them to see who approves.
+The tool will save the results to a file (defaults to `report.csv`).
 
 
 ## Future work
