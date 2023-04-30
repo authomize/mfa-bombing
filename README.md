@@ -36,6 +36,8 @@ To use the MFA Bomber tool, follow these steps:
 3. Run the script with the following command: 
 `poetry run python mfa_bomber.py <okta_domain> <username> <password>`.
 
+Note - If you don't want to use poetry you can install dependencies manually using the `requirements.txt` file.
+
 Note that the tool can take some time to run,
 since it will wait for the user to approve the push,
 and if it gets rejected, it'll wait some time and then retry.
@@ -50,6 +52,8 @@ To use the MFA Bombing Tester tool, follow these steps:
 ```commandline
 poetry run python mfa_bombing_tester.py [path/to/report.csv]
 ```
+
+Note - If you don't want to use poetry you can install dependencies manually using the `requirements.txt` file.
 
 The tool will scan your Okta organization for all users with push MFA prompts configured and trigger them to see who approves.
 The tool will save the results to a file (defaults to `report.csv`).
