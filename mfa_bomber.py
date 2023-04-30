@@ -31,7 +31,8 @@ class OktaMFABomberAuthenticator:
         }
 
         response = requests.post(session_url, headers=headers, json=login_data)
-        # response.raise_for_status()
+        if response.status_code != 200:
+            raise ValueError("Couldn't authenticate. Probably wrong password.")
 
         response_dict = response.json()
         # Check for MFA requirement
