@@ -37,8 +37,9 @@ To use the MFA Bomber tool, follow these steps:
    1. Install poetry: `pip install poetry`
    2. Run using Poetry: 
     ```commandline
-    poetry run python mfa_bomber.py <okta_domain> <username> <password>
+    poetry run python mfa_bomber.py <okta_domain> <username> "<password>"
     ```
+   Note - it's best to put quotes around the password to account for the case where it contains special chars.
 4. Without poetry (skip this if you used poetry):
    1. Install dependencies `pip install -r requirement.txt`
    2. Run:
