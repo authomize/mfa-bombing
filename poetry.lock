@@ -222,6 +222,17 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
+name = "tenacity"
+version = "8.2.2"
+description = "Retry code until it succeeds"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+doc = ["reno", "sphinx", "tornado (>=4.5)"]
+
+[[package]]
 name = "termcolor"
 version = "2.2.0"
 description = "ANSI color formatting for output in terminal"
@@ -263,7 +274,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "d6b2a6c67162c50a6c18eae29657160868048afdb1d2b24c613850f14625deee"
+content-hash = "fb5eae5b245dae90a8e80436a8e8417644c126d61e171c8149d74e63f66c9172"
 
 [metadata.files]
 aenum = []
@@ -286,6 +297,7 @@ python-jose = []
 pyyaml = []
 rsa = []
 six = []
+tenacity = []
 termcolor = []
 typing-extensions = []
 xmltodict = []
