@@ -8,7 +8,7 @@ import yaml
 from fire import Fire
 from okta import models
 from okta.client import Client as OktaClient
-
+import okta.api_response
 
 class MFAChallenger:
     def __init__(self):
@@ -60,12 +60,26 @@ class MFAChallenger:
 
                 await sleep(1)
 
+
     async def search_and_challenge_users(self):
-        users, resp, err = await self.okta_client.list_users()
+        users, resp, err = await self._get_users()
         tasks = [asyncio.create_task(self.challenge_user(user)) for user in users]
         results = await asyncio.gather(*tasks)
         return users, results
 
+    async def _get_users(self):
+        all_users = []
+        
+        users, resp, err = await self.okta_client.list_users(dict(limit=100, filter=f"status eq \"ACTIVE\""))
+        all_users.extend(users)
+
+        while resp.has_next():
+            # Use anext() to get the next result from the async generator
+            next_result = await anext(resp.get_next())
+            users, next_resp, err = next_result
+            all_users.extend(users)
+
+        return all_users, resp, err
 
 def mfa_bombing_tester(output_file_path="report.csv"):
     mfa_challenger = MFAChallenger()
