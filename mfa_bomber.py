@@ -60,6 +60,10 @@ class OktaMFABomberAuthenticator:
                 raise TimeoutError()
                 # print(response.json())
 
+        if response.json()['status'] == 'SUCCESS':
+            print("Got session token without MFA")
+            return response.json().get('sessionToken')
+
         session_id = response.cookies.get("sid")
 
         return session_id
@@ -85,7 +89,6 @@ class OktaMFABomberAuthenticator:
         session_cookies = response.cookies
         cookie_token = response.json()['cookieToken']
         return session_cookies, cookie_token
-        # print(f'Session cookie: {session_cookie}')
 
 
 def authenticate_user(okta_domain: str, username: str, password: str):
